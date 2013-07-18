@@ -1,7 +1,7 @@
 package ar.testing;
 
 import java.io.IOException;
-import java.io.PipedWriter;
+import java.io.Writer;
 
 
 public class PrimeNumberGeneratorThread implements Runnable {
@@ -10,7 +10,7 @@ public class PrimeNumberGeneratorThread implements Runnable {
 	
 	private int to;
 	
-	private PipedWriter pw;
+	private Writer writer;
 	
 	
 	public boolean isPrime(int number) {
@@ -26,11 +26,11 @@ public class PrimeNumberGeneratorThread implements Runnable {
 		return true;
 	}
 
-	public PrimeNumberGeneratorThread(int from, int to) throws IOException {
+	public PrimeNumberGeneratorThread(int from, int to,Writer writer) throws IOException {
 		super();
 		this.from = from;
 		this.to = to;
-		this.pw = new PipedWriter();
+		this.writer = writer;
 	}
 	
 	@Override
@@ -39,25 +39,14 @@ public class PrimeNumberGeneratorThread implements Runnable {
 		try {
 			for (int i = from; i < to; i++) {
 				if (isPrime(i)) {
-					pw.write(i);
-//					System.out.println("prime number = "+  i);
+					writer.write(i);
 				}
 			}
-			
-//			System.out.println("Finsh the calculation..");
-			pw.close();
+			writer.close();
 			
 		} catch (IOException e) {
 		}
-		
 		catch (Exception e) {
 		}
-		
-		
 	}
-
-	public PipedWriter getPw() {
-		return pw;
-	}
-	
 }
