@@ -5,7 +5,7 @@ import java.io.PipedReader;
 import java.io.PipedWriter;
 import java.util.ArrayList;
 
-public class MainThread implements Runnable {
+public class MainThread {
 
 	static final int FROM = 0; 
 	static final int TO = 100000;
@@ -42,7 +42,12 @@ public class MainThread implements Runnable {
 	}
 
 	private static void printList(ArrayList<Integer> bothTypeNumberList) {
-		// TODO Auto-generated method stub
+		
+		System.out.println("both type numbes : ");
+		
+		for (Integer integer : bothTypeNumberList) {
+			System.out.println(integer);
+		}
 		
 	}
 
@@ -71,9 +76,4 @@ public class MainThread implements Runnable {
 			return list;
 	}
 
-	@Override
-	public void run() {
-	
-	}	
-		
 }
