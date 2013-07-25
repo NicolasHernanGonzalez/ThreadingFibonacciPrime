@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public class MainThread {
 
 	static final int FROM = 0; 
-	static final int TO = 100000;
+	static final int TO = 1000000;
 	
 	
 	public static void main(String[] args) throws IOException, InterruptedException {
@@ -22,7 +22,7 @@ public class MainThread {
 		PipedReader primeReader = new PipedReader(primeWriter);
 		PipedReader fiboReader = new PipedReader(fibonacciWriter);
 		
-		PrimeNumberGeneratorThread prime = new PrimeNumberGeneratorThread(FROM, TO,primeWriter);
+		PrimeNumberGeneratorThread prime = new PrimeNumberGeneratorThread(FROM + 2, TO,primeWriter);
 		Thread myPrimeThread = new Thread(prime);
 		myPrimeThread.start();
 		
@@ -75,5 +75,4 @@ public class MainThread {
 			
 			return list;
 	}
-
 }
